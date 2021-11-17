@@ -47,3 +47,10 @@ tmux set -gF  status-left                  "#[fg=#{@p-main},bg=#{@p-status-bg},b
 tmux set -gF  status-right                 "#[fg=#{@p-status-bg},bg=#{@p-bg}] #[fg=#{@p-main},bg=#{@p-status-bg},bold] #{prefix_highlight} | #{@e-rf} "
 tmux set -gwF window-status-format         "#{@e-sf}"
 tmux set -gwF window-status-current-format "#[fg=#{@p-bg},bg=#{@p-black}] #[fg=#{@p-accent},nobold] #{@e-scf} #[fg=#{@p-bg},bg=#{@p-black},nobold]"
+
+# When theme update, require tmux update.
+# "prefix + U(Shift+u)  => input 'all' => Enter", then restart tmux.
+
+
+# ref
+# https://arcolinux.com/everything-you-need-to-know-about-tmux-status-bar/
