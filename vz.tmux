@@ -44,7 +44,7 @@ tmux set -gwF window-status-separator      ""
 tmux set -gwF window-status-current-style  "fg=#{@p-accent},bg=#{@p-black}"
 tmux set -gwF window-status-activity-style "fg=#{@p-status-fg},bg=#{@p-bg}"
 
-tmux set -gF  status-left                  "#[fg=#{@p-main},bg=#{@p-status-bg},bold] #{@e-lf} #[fg=#{@p-status-bg},bg=#{@p-bg},nobold] #{?client_prefix,#[reverse],}"
+tmux set -gF  status-left                  "#[fg=#{@p-main},bg=#{@p-status-bg},bold]#{?client_prefix,#[reverse],} #{@e-lf} #[fg=#{@p-status-bg},bg=#{@p-bg},nobold]"
 tmux set -gF  status-right                 "#[fg=#{@p-status-bg},bg=#{@p-bg}]#[fg=#{@p-main},bg=#{@p-status-bg},bold] #{@e-rf} "
 tmux set -gwF window-status-format         "#{@e-sf}"
 tmux set -gwF window-status-current-format "#[fg=#{@p-bg},bg=#{@p-black}]#[fg=#{@p-accent},nobold] #{@e-scf} #[fg=#{@p-bg},bg=#{@p-black},nobold]"
