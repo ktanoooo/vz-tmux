@@ -3,15 +3,15 @@
 # Format Definition
 tmux set -goq @e-sf        "  #I:#W#F  "
 tmux set -goq @e-scf       "#I:#W#F"
-tmux set -goq @e-rf        "%Y-%m-%d %H:%M"
+tmux set -goq @e-rf        "%Y-%m-%d %H:%M (%a)"
 tmux set -goq @e-lf        "Session:#S/#(tmux ls | wc -l | tr -d ' ')"
 
 # Color Definition
 tmux set -goq @p-main      colour240
 tmux set -goq @p-bg        colour233
-tmux set -goq @p-accent    colour10
+tmux set -goq @p-accent    colour166
 tmux set -goq @p-status-bg colour234
-tmux set -goq @p-status-fg colour238
+tmux set -goq @p-status-fg colour244
 tmux set -goq @p-black     black
 
 # Tmux
