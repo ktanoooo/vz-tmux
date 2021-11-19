@@ -1,56 +1,95 @@
 #!/usr/bin/env bash
 
-# Format Definition
-tmux set -goq @e-sf        "  #I:#W#F  "
-tmux set -goq @e-scf       "#I:#W#F"
-tmux set -goq @e-rf        "%Y-%m-%d %H:%M (%a)"
-tmux set -goq @e-lf        "Session:#S/#(tmux ls | wc -l | tr -d ' ')"
+# ----------------------------------------
+# Script
+# ----------------------------------------
+week=`date | cut -d " " -f1`
+case $week in
+  'Sun') weekJp="“ú" ;;
+  'Mon') weekJp="ŒŽ" ;;
+  'Tue') weekJp="‰Î" ;;
+  'Wed') weekJp="…" ;;
+  'Thu') weekJp="–Ø" ;;
+  'Fri') weekJp="‹à" ;;
+  'Sat') weekJp="“y" ;;
+esac
 
+user=`whoami`
+
+# ----------------------------------------
+# Configuration
+# ----------------------------------------
+tmux set -goq @weekJp $weekJp
+tmux set -goq @user   $user
+
+# update interval
+tmux set -gF  status-interval 1
+
+# ----------------------------------------
 # Color Definition
-tmux set -goq @p-main      colour240
-tmux set -goq @p-bg        colour233
-tmux set -goq @p-accent    colour166
-tmux set -goq @p-status-bg colour234
-tmux set -goq @p-status-fg colour244
-tmux set -goq @p-black     black
+# ----------------------------------------
+tmux set -ga terminal-overrides ',xterm-256color:Tc'
+tmux set -g  default-terminal   "tmux-256color"
+tmux set -as terminal-overrides ',xterm*:sitm=\E[3m'
 
-# Tmux
-tmux set -gwF clock-mode-style             24
-tmux set -gwF clock-mode-colour            "#{@p-main}"
+tmux set -goq @leftFont         colour250
+tmux set -goq @leftBG           colour237
+tmux set -goq @rigthFont        colour250
+tmux set -goq @rightBG          colour23
+tmux set -goq @marginColor      colour234
+tmux set -goq @winFont          colour250
+tmux set -goq @winBG            colour234
+tmux set -goq @winCurrentFont   colour255
+tmux set -goq @winCurrentBG     colour239
+tmux set -goq @accent           colour119
+tmux set -goq @copyFont         colour0
+tmux set -goq @copyBG           colour2
+tmux set -goq @prefix           colour226
 
-tmux set -gF  display-panes-colour         "#{@p-bg}" 
-tmux set -gF  display-panes-active-colour  "#{@p-status-fg}"
+# for i in {0..255}; do
+#   printf "\x1b[38;5;${i}mcolour${i}\x1b[0m\n"
+# done
 
-tmux set -gF  message-style                "fg=#{@p-black},bg=#{@p-main}"
-tmux set -gF  message-command-style        "fg=#{@p-black},bg=#{@p-main}"
+# ----------------------------------------
+# Common style
+# ----------------------------------------
+# copy selector color
+tmux set -gwF mode-style   "fg=#{@copyFont},bg=#{@copyBG}"
+# status bar margin color
+tmux set -gF  status-style "fg=#{@marginColor},bg=#{@marginColor}"
 
-tmux set -gF  status-interval              1
+
+
+# ----------------------------------------
+# Side status style
+# ----------------------------------------
+# Format Dinifition
+tmux set -goqF @datetime       "%Y-%m-%d(#{@weekJp}) %H:%M:%S"
+tmux set -goq  @esessionStatus "Session:#S/#(tmux ls | wc -l | tr -d ' ')"
+
+# Left side status
+# max length
+tmux set -gF status-left-length 45
+tmux set -gF status-left        "#[fg=#{@leftFont},bg=#{@leftBG}] #{@esessionStatus} #[fg=#{@leftBG},bg=#{@marginColor}]?"
+
+# Right side status
+# max length
+tmux set -g status-right       "#[fg=#{@rightBG},bg=#{@marginColor}]?#[fg=#{@rightBG},bg=#{@rightBG}]#{?client_prefix,#[bg=#{@prefix}] PREFIX,}#{?#{==:#{pane_mode},copy-mode},#[bg=colour208] COPY,} #[fg=#{@rigthFont},bg=#{@rightBG}] #{%Y-%m-%d(#{@weekJp}) %H:%M:%S} "
+
+# ----------------------------------------
+# Window status style
+# ----------------------------------------
+# window status to center
 tmux set -gF  status-justify               centre
+# window status (center status)
+tmux set -gwF window-status-separator      "  "
+tmux set -g   window-status-format         "#[fg=#{@winFont}]#I#[fg=#{@winBG}]:#[fg=#{@winFont}]#W#[fg=#{@winFont}]#F"
+tmux set -g   window-status-current-format "#[fg=#{@winCurrentBG},bg=#{@marginColor}]?#[fg=#{@accent},bg=#{@winCurrentBG}] #I#[fg=#{@winCurrentFont}]:#[fg=#{@winCurrentFont}]#W #[fg=#{@winCurrentBG},bg=#{@marginColor}]?"
 
-tmux set -gF  status-left-length           40
-tmux set -gF  status-right-length          150
-
-tmux set -gF  status-style                 "fg=#{@p-status-fg},bg=#{@p-bg}"
-tmux set -gF  status-left-style            "fg=#{@p-status-fg},bg=#{@p-bg}"
-tmux set -gF  status-right-style           "fg=#{@p-status-fg},bg=#{@p-bg}"
-
-tmux set -gwF mode-style                   "fg=#{@p-black},bg=#{@p-main}"
-
-tmux set -gwF pane-border-style            "fg=#{@p-main},bg=default"
-tmux set -gwF pane-active-border-style     "fg=#{@p-main},bg=default"
-
-tmux set -gwF window-status-separator      ""
-tmux set -gwF window-status-current-style  "fg=#{@p-accent},bg=#{@p-black}"
-tmux set -gwF window-status-activity-style "fg=#{@p-status-fg},bg=#{@p-bg}"
-
-tmux set -gF  status-left                  "#[fg=#{@p-main},bg=#{@p-status-bg},bold] #{@e-lf} #[fg=#{@p-status-bg},bg=#{@p-bg},nobold]"
-tmux set -gF  status-right                 "#[fg=#{@p-status-bg},bg=#{@p-bg}] #[fg=#{@p-main},bg=#{@p-status-bg},bold] #{prefix_highlight} | #{@e-rf} "
-tmux set -gwF window-status-format         "#{@e-sf}"
-tmux set -gwF window-status-current-format "#[fg=#{@p-bg},bg=#{@p-black}] #[fg=#{@p-accent},nobold] #{@e-scf} #[fg=#{@p-bg},bg=#{@p-black},nobold]"
-
-# When theme update, require tmux update.
+# Install
+# "prefix + I(Shift+i)
+# update
 # "prefix + U(Shift+u)  => input 'all' => Enter", then restart tmux.
-
 
 # ref
 # https://arcolinux.com/everything-you-need-to-know-about-tmux-status-bar/
