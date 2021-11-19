@@ -5,13 +5,13 @@
 # ----------------------------------------
 week=`date | cut -d " " -f1`
 case $week in
-  'Sun') weekJp="ì˙" ;;
-  'Mon') weekJp="åé" ;;
-  'Tue') weekJp="âŒ" ;;
-  'Wed') weekJp="êÖ" ;;
-  'Thu') weekJp="ñÿ" ;;
-  'Fri') weekJp="ã‡" ;;
-  'Sat') weekJp="ìy" ;;
+  'Sun') weekJp="Êó•" ;;
+  'Mon') weekJp="Êúà" ;;
+  'Tue') weekJp="ÁÅ´" ;;
+  'Wed') weekJp="Ê∞¥" ;;
+  'Thu') weekJp="Êú®" ;;
+  'Fri') weekJp="Èáë" ;;
+  'Sat') weekJp="Âúü" ;;
 esac
 
 user=`whoami`
@@ -70,11 +70,11 @@ tmux set -goq  @esessionStatus "Session:#S/#(tmux ls | wc -l | tr -d ' ')"
 # Left side status
 # max length
 tmux set -gF status-left-length 45
-tmux set -gF status-left        "#[fg=#{@leftFont},bg=#{@leftBG}] #{@esessionStatus} #[fg=#{@leftBG},bg=#{@marginColor}]?"
+tmux set -gF status-left        "#[fg=#{@leftFont},bg=#{@leftBG}] #{@esessionStatus} #[fg=#{@leftBG},bg=#{@marginColor}]ÓÇ¥"
 
 # Right side status
 # max length
-tmux set -g status-right       "#[fg=#{@rightBG},bg=#{@marginColor}]?#[fg=#{@rightBG},bg=#{@rightBG}]#{?client_prefix,#[bg=#{@prefix}] PREFIX,}#{?#{==:#{pane_mode},copy-mode},#[bg=colour208] COPY,} #[fg=#{@rigthFont},bg=#{@rightBG}] #{%Y-%m-%d(#{@weekJp}) %H:%M:%S} "
+tmux set -g status-right       "#[fg=#{@rightBG},bg=#{@marginColor}]ÓÇ∂#[fg=#{@rightBG},bg=#{@rightBG}]#{?client_prefix,#[bg=#{@prefix}] PREFIX,}#{?#{==:#{pane_mode},copy-mode},#[bg=colour208] COPY,} #[fg=#{@rigthFont},bg=#{@rightBG}] #{%Y-%m-%d(#{@weekJp}) %H:%M:%S} "
 
 # ----------------------------------------
 # Window status style
@@ -84,7 +84,7 @@ tmux set -gF  status-justify               centre
 # window status (center status)
 tmux set -gwF window-status-separator      "  "
 tmux set -g   window-status-format         "#[fg=#{@winFont}]#I#[fg=#{@winBG}]:#[fg=#{@winFont}]#W#[fg=#{@winFont}]#F"
-tmux set -g   window-status-current-format "#[fg=#{@winCurrentBG},bg=#{@marginColor}]?#[fg=#{@accent},bg=#{@winCurrentBG}] #I#[fg=#{@winCurrentFont}]:#[fg=#{@winCurrentFont}]#W #[fg=#{@winCurrentBG},bg=#{@marginColor}]?"
+tmux set -g   window-status-current-format "#[fg=#{@winCurrentBG},bg=#{@marginColor}]ÓÇ∂#[fg=#{@accent},bg=#{@winCurrentBG}] #I#[fg=#{@winCurrentFont}]:#[fg=#{@winCurrentFont}]#W #[fg=#{@winCurrentBG},bg=#{@marginColor}]ÓÇ¥"
 
 # Install
 # "prefix + I(Shift+i)
