@@ -76,7 +76,7 @@ tmux set -gF status-left "#[fg=#{@leftFont},bg=#{@leftBG}] #{@esessionStatus} #[
 
 # Right side status
 # max length
-tmux set -g status-right "#[fg=#{@rightBG},bg=#{@marginColor}]#[fg=#{@rightBG},bg=#{@rightBG}]#{?client_prefix,#[bg=#{@rightPrefixBG}] PREFIX,}#{?#{==:#{pane_mode},copy-mode},#[bg=#{@rightCopyBG}] COPY,}#[fg=#{@rigthFont},bg=#{@rightBG}] #{%Y-%m-%d(#{@weekJp}) %H:%M:%S} "
+tmux set -g status-right "#[fg=#{@rightBG},bg=#{@marginColor}]#[fg=#{@rightBG},bg=#{@rightBG}]#{?client_prefix,#[bg=#{@rightPrefixBG}] PREFIX ,}#{?#{==:#{pane_mode},copy-mode},#[bg=#{@rightCopyBG}] COPY,}#[fg=#{@rigthFont},bg=#{@rightBG}] #{%Y-%m-%d(#{@weekJp}) %H:%M:%S} "
 
 # ----------------------------------------
 # Window status style
