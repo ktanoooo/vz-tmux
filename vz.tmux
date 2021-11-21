@@ -14,15 +14,12 @@ case $week in
   'Sat') weekJp="土" ;;
 esac
 
-user=`whoami`
-
 sessionCount=$((`tmux display-message -p '#S'` + 1))
 
 # ----------------------------------------
 # Configuration
 # ----------------------------------------
 tmux set -goq @weekJp         $weekJp
-tmux set -goq @user           $user
 tmux set -goq @sessionCount   $sessionCount
 
 # update interval
@@ -33,15 +30,13 @@ tmux set -g  mouse            on
 # ----------------------------------------
 # Color Definition
 # ----------------------------------------
-tmux set -g  default-terminal "tmux-256color"
-
 tmux set -goq @leftFont         colour33
 tmux set -goq @leftBG           colour232
 tmux set -goq @rigthFont        colour33
 tmux set -goq @rightBG          colour232
 tmux set -goq @rightPrefixBG    colour1
 tmux set -goq @rightCopyBG      colour226
-tmux set -goq @marginColor      colour234
+tmux set -goq @marginColor      colour235
 tmux set -goq @winFont          colour255
 tmux set -goq @winBG            colour239
 tmux set -goq @winCurrentFont   colour33
@@ -61,6 +56,8 @@ tmux set -goq @copyBG           colour232
 tmux set -gwF mode-style "fg=#{@copyFont},bg=#{@copyBG}"
 # status bar margin color
 tmux set -gF  status-style "fg=#{@marginColor},bg=#{@marginColor}"
+# messages color
+tmux set -gwF message-style "fg=#{@accent},bg=#{@copyBG}"
 
 # ----------------------------------------
 # Side status style
