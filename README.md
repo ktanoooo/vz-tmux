@@ -1,10 +1,10 @@
-vz-tmuxは日本語で曜日確認ができる必要最低限のシンプルなテーマです。
+vz-tmuxは曜日(JP)確認ができる必要最低限のシンプルなtmuxテーマです。
 
-https://user-images.githubusercontent.com/50889946/142764807-d8750188-8ed9-4714-b096-c55342a73d79.png
-https://user-images.githubusercontent.com/50889946/142764802-bdcb13c1-9821-47bf-9762-ac0c5ecce8d6.png
-https://user-images.githubusercontent.com/50889946/142764805-9227923b-210c-45f8-a953-ce8eb9fb6332.png
+![tmux1](https://user-images.githubusercontent.com/50889946/142764807-d8750188-8ed9-4714-b096-c55342a73d79.png)
+![tmux2](https://user-images.githubusercontent.com/50889946/142764802-bdcb13c1-9821-47bf-9762-ac0c5ecce8d6.png)
+![tmux3](https://user-images.githubusercontent.com/50889946/142764805-9227923b-210c-45f8-a953-ce8eb9fb6332.png)
 
-https://user-images.githubusercontent.com/50889946/142764664-7a1cf508-1122-4d27-85ed-e2d27caf7a99.gif
+![vz-tmux](https://user-images.githubusercontent.com/50889946/142764664-7a1cf508-1122-4d27-85ed-e2d27caf7a99.gif)
 
 
 プラグインマネージャーtpmに依存していてwindowsでは正常に動きますが、macのiterm2では文字化けする可能性があります。
